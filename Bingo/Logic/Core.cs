@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+using Bingo.Annotations;
 
 namespace Bingo.Logic
 {
-	public class Core
+	public class Core : INotifyPropertyChanged
 	{
 		public readonly List<string> ListOfAllPossibleLetters = new List<string>();
-		public readonly List<string> ListOfPlayingLetters = new List<string>();
-
+		public List<string> ListOfPlayingLetters { get; set; }
 
 		public readonly List<string> PossibleB = new List<string> { "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B14", "B15" };
 		public readonly List<string> PossibleI = new List<string> { "I16", "I17", "I18", "I19", "I20", "I21", "I22", "I23", "I24", "I25", "I26", "I27", "I28", "I29", "I30" };
@@ -26,6 +29,8 @@ namespace Bingo.Logic
 
 		public Core()
 		{
+			ListOfPlayingLetters = new List<string>();
+
 			ListOfAllPossibleLetters.AddRange(PossibleB);
 			ListOfAllPossibleLetters.AddRange(PossibleI);
 			ListOfAllPossibleLetters.AddRange(PossibleN);
@@ -38,26 +43,49 @@ namespace Bingo.Logic
 			FillPlayableG();
 			FillPlayableO();
 
-			FillPlayingLetters();
+			//FillPlayingLetters();
 		}
 
 		private void FillPlayingLetters()
 		{
+			Timer timer = new Timer(3000);
+
+			timer.Elapsed += OnTimedEvent;
+
+			timer.Enabled = true;
+			//Random rnd = new Random();
+			//List<int> indexList = new List<int>();
+			//while (indexList.Count < 40)
+			//{
+			//	var x = rnd.Next(0, 75);
+			//	if (!indexList.Contains(x))
+			//	{
+			//		indexList.Add(x);
+			//	}
+			//}
+
+			//foreach (int i in indexList)
+			//{
+			//	ListOfPlayingLetters.Add(ListOfAllPossibleLetters.ElementAt(i));
+			//}
+		}
+
+		private void OnTimedEvent(object source, ElapsedEventArgs e)
+		{
 			Random rnd = new Random();
-			List<int> indexList = new List<int>();
-
-			while (indexList.Count < 40)
+			if (ListOfPlayingLetters.Count < 40)
 			{
-				var x = rnd.Next(0, 75);
-				if (!indexList.Contains(x))
+				bool newLetterAdded = false;
+				while (!newLetterAdded)
 				{
-					indexList.Add(x);
+					var randomizedLetter = ListOfAllPossibleLetters.ElementAt(rnd.Next(0, 75));
+					if (!ListOfPlayingLetters.Contains(randomizedLetter))
+					{
+						newLetterAdded = true;
+						ListOfPlayingLetters.Add(randomizedLetter);
+						OnPropertyChanged(nameof(ListOfPlayingLetters));
+					}
 				}
-			}
-
-			foreach (int i in indexList)
-			{
-				ListOfPlayingLetters.Add(ListOfAllPossibleLetters.ElementAt(i));
 			}
 		}
 
@@ -161,5 +189,12 @@ namespace Bingo.Logic
 			}
 		}
 
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }

@@ -69,10 +69,9 @@
 			// 
 			// tbxList
 			// 
-			this.tbxList.Location = new System.Drawing.Point(405, 47);
-			this.tbxList.Multiline = true;
+			this.tbxList.Location = new System.Drawing.Point(94, 16);
 			this.tbxList.Name = "tbxList";
-			this.tbxList.Size = new System.Drawing.Size(312, 231);
+			this.tbxList.Size = new System.Drawing.Size(285, 20);
 			this.tbxList.TabIndex = 3;
 			// 
 			// Bingo
