@@ -30,12 +30,14 @@
 		{
 			this.btnStartBingo = new System.Windows.Forms.Button();
 			this.tblBingoBoard = new System.Windows.Forms.TableLayoutPanel();
-			this.tbxList = new System.Windows.Forms.TextBox();
+			this.txbList = new System.Windows.Forms.TextBox();
+			this.txbCount = new System.Windows.Forms.TextBox();
+			this.lblFocusGainer = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btnStartBingo
 			// 
-			this.btnStartBingo.Location = new System.Drawing.Point(13, 13);
+			this.btnStartBingo.Location = new System.Drawing.Point(12, 14);
 			this.btnStartBingo.Name = "btnStartBingo";
 			this.btnStartBingo.Size = new System.Drawing.Size(75, 23);
 			this.btnStartBingo.TabIndex = 0;
@@ -45,9 +47,7 @@
 			// 
 			// tblBingoBoard
 			// 
-			this.tblBingoBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tblBingoBoard.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.tblBingoBoard.ColumnCount = 5;
 			this.tblBingoBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
 			this.tblBingoBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -55,7 +55,7 @@
 			this.tblBingoBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
 			this.tblBingoBoard.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
 			this.tblBingoBoard.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-			this.tblBingoBoard.Location = new System.Drawing.Point(103, 47);
+			this.tblBingoBoard.Location = new System.Drawing.Point(94, 42);
 			this.tblBingoBoard.Name = "tblBingoBoard";
 			this.tblBingoBoard.RowCount = 6;
 			this.tblBingoBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -64,22 +64,41 @@
 			this.tblBingoBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
 			this.tblBingoBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
 			this.tblBingoBoard.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-			this.tblBingoBoard.Size = new System.Drawing.Size(257, 231);
+			this.tblBingoBoard.Size = new System.Drawing.Size(261, 237);
 			this.tblBingoBoard.TabIndex = 2;
 			// 
-			// tbxList
+			// txbList
 			// 
-			this.tbxList.Location = new System.Drawing.Point(94, 16);
-			this.tbxList.Name = "tbxList";
-			this.tbxList.Size = new System.Drawing.Size(285, 20);
-			this.tbxList.TabIndex = 3;
+			this.txbList.Enabled = false;
+			this.txbList.Location = new System.Drawing.Point(94, 16);
+			this.txbList.Name = "txbList";
+			this.txbList.Size = new System.Drawing.Size(261, 20);
+			this.txbList.TabIndex = 3;
+			// 
+			// txbCount
+			// 
+			this.txbCount.Enabled = false;
+			this.txbCount.Location = new System.Drawing.Point(375, 16);
+			this.txbCount.Name = "txbCount";
+			this.txbCount.Size = new System.Drawing.Size(58, 20);
+			this.txbCount.TabIndex = 4;
+			// 
+			// lblFocusGainer
+			// 
+			this.lblFocusGainer.AutoSize = true;
+			this.lblFocusGainer.Location = new System.Drawing.Point(9, 324);
+			this.lblFocusGainer.Name = "lblFocusGainer";
+			this.lblFocusGainer.Size = new System.Drawing.Size(0, 13);
+			this.lblFocusGainer.TabIndex = 5;
 			// 
 			// Bingo
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(819, 466);
-			this.Controls.Add(this.tbxList);
+			this.ClientSize = new System.Drawing.Size(445, 346);
+			this.Controls.Add(this.lblFocusGainer);
+			this.Controls.Add(this.txbCount);
+			this.Controls.Add(this.txbList);
 			this.Controls.Add(this.tblBingoBoard);
 			this.Controls.Add(this.btnStartBingo);
 			this.Name = "Bingo";
@@ -93,7 +112,9 @@
 
 		private System.Windows.Forms.Button btnStartBingo;
 		private System.Windows.Forms.TableLayoutPanel tblBingoBoard;
-		private System.Windows.Forms.TextBox tbxList;
+		private System.Windows.Forms.TextBox txbList;
+		private System.Windows.Forms.TextBox txbCount;
+		private System.Windows.Forms.Label lblFocusGainer;
 	}
 }
 
